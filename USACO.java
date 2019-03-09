@@ -38,14 +38,6 @@ public class USACO {
       stomp(field, directions[i][0], directions[i][1], directions[i][2]);
     }
 
-    // String testField = "";
-    // for (int r = 0; r < field.length; r++) {
-    //   for (int c = 0; c < field[0].length; c++) {
-    //     testField += field[r][c] + " ";
-    //   }
-    //   testField += "\n";
-    // }
-    // System.out.println(testField);
     int sum = 0;
     for (int r = 0; r < field.length; r ++) {
       for (int c = 0; c < field[0].length; c++) {
@@ -54,6 +46,15 @@ public class USACO {
         sum += field[r][c];
       }
     }
+    System.out.println(sum);
+    // String testField = "";
+    // for (int r = 0; r < field.length; r++) {
+    //   for (int c = 0; c < field[0].length; c++) {
+    //     testField += field[r][c] + " ";
+    //   }
+    //   testField += "\n";
+    // }
+    // System.out.println(testField);
     return sum * 72 * 72;
   }
 
@@ -75,8 +76,50 @@ public class USACO {
     }
   }
 
+  //--------------------------------------------------------------------------
+  //--------------------------------------------------------------------------
+  //--------------------------------------------------------------------------
+  //--------------------------------------------------------------------------
+
   public static int silver(String filename) throws FileNotFoundException {
+    File f = new File(filename);
+    Scanner in = new Scanner(f);
+    int[] firstLine = new int[3];
+    firstLine[0]=Integer.parseInt(in.next()); //rows
+    firstLine[1]=Integer.parseInt(in.next()); //cols
+    firstLine[2]=Integer.parseInt(in.next()); //time
+    int[][] field = new int[firstLine[0]][firstLine[1]];
+    for (int r = 0; r < field.length; r++) {
+      for (int c = 0; c < field[0].length; c++) {
+        if (in.next().equals(".")) field[r][c] = 0;
+        else field[r][c] = -1;
+      }
+    }
+    int startingR = Integer.parseInt(in.next())-1;
+    int startingC = Integer.parseInt(in.next())-1;
+    int endingR = Integer.parseInt(in.next())-1;
+    int endingC = Integer.parseInt(in.next())-1;
+    field[startingR][startingC] = 1; //starting point set in field
     return 0;
+  }
+
+  private static void silverHelper(int[][] field) {
+    for (int r = 0; r < field.length; r++) {
+      for (int c = 0; c < field[0].length; c++) {
+
+      }
+    }
+  }
+
+  private static String silverFieldString(int[][] field) {
+    String s = "";
+    for (int r = 0; r < field.length; r++) {
+      for (int c = 0; c < field[0].length; c++) {
+        if (field[r][c] == -1) s += "* ";
+        else s += field[r][c];
+      }
+    }
+    return s;
   }
 
   public static void main(String[] args) {
