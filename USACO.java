@@ -96,6 +96,7 @@ public class USACO {
         else field[r][c] = 0;
       }
     }
+    // System.out.println(silverFieldString(field));
     int startingR = Integer.parseInt(in.next())-1;
     int startingC = Integer.parseInt(in.next())-1;
     int endingR = Integer.parseInt(in.next())-1;
@@ -124,6 +125,7 @@ public class USACO {
           }
           newField[r][c] = sum;
         }
+        else newField[r][c]=-1;
       }
     }
     return newField;
@@ -150,7 +152,7 @@ public class USACO {
   public static void main(String[] args) {
     try {
       // System.out.println(bronze("makelake.2.in"));
-      System.out.println(silver("ctravel.1.in"));
+      System.out.println(silver("ctravel.3.in"));
     }
     catch (FileNotFoundException e) {}
   }
