@@ -46,7 +46,6 @@ public class USACO {
         sum += field[r][c];
       }
     }
-    System.out.println(sum);
     // String testField = "";
     // for (int r = 0; r < field.length; r++) {
     //   for (int c = 0; c < field[0].length; c++) {
@@ -89,10 +88,12 @@ public class USACO {
     firstLine[1]=Integer.parseInt(in.next()); //cols
     firstLine[2]=Integer.parseInt(in.next()); //time
     int[][] field = new int[firstLine[0]][firstLine[1]];
-    for (int r = 0; r < field.length; r++) {
-      for (int c = 0; c < field[0].length; c++) {
-        if (in.next().equals(".")) field[r][c] = 0;
-        else field[r][c] = -1;
+    in.nextLine();
+    for (int r = 0; r < firstLine[0]; r++) {
+      String line = in.nextLine();
+      for (int c = 0; c < firstLine[1]; c++) {
+        if (line.charAt(c)=='*') field[r][c] = -1;
+        else field[r][c] = 0;
       }
     }
     int startingR = Integer.parseInt(in.next())-1;
@@ -100,16 +101,32 @@ public class USACO {
     int endingR = Integer.parseInt(in.next())-1;
     int endingC = Integer.parseInt(in.next())-1;
     field[startingR][startingC] = 1; //starting point set in field
-    return 0;
+    for (int i = 0; i < firstLine[2]; i++) {
+      field = silverHelper(field);
+      // System.out.println(silverFieldString(field));
+    }
+    return field[endingR][endingC];
   }
 
   private static int[][] silverHelper(int[][] field) {
+    int[][] increments = {{0,0,-1,1}, {1,-1,0,0}};
     int[][] newField = new int[field.length][field[0].length];
     for (int r = 0; r < field.length; r++) {
       for (int c = 0; c < field[0].length; c++) {
-
+        if (field[r][c] != -1) {
+          int sum = 0;
+          for (int i = 0; i < 4; i ++) {
+            int newR = r + increments[0][i];
+            int newC = c + increments[1][i];
+            if (!outOfBounds(field, newR, newC) && field[newR][newC] != -1) {
+              sum += field[newR][newC];
+            }
+          }
+          newField[r][c] = sum;
+        }
       }
     }
+    return newField;
   }
 
   private static String silverFieldString(int[][] field) {
@@ -117,21 +134,23 @@ public class USACO {
     for (int r = 0; r < field.length; r++) {
       for (int c = 0; c < field[0].length; c++) {
         if (field[r][c] == -1) s += "* ";
-        else s += field[r][c];
+        else s += field[r][c] + " ";
       }
+      s += "\n";
     }
     return s;
   }
 
   private static boolean outOfBounds(int[][] field, int r, int c) {
     if (r < 0 || c < 0) return true;
-    if (r >= field.length || c > field[0].length) return true;
+    if (r >= field.length || c >= field[0].length) return true;
     return false;
   }
 
   public static void main(String[] args) {
     try {
-      System.out.println(bronze("makelake.2.in"));
+      // System.out.println(bronze("makelake.2.in"));
+      System.out.println(silver("ctravel.1.in"));
     }
     catch (FileNotFoundException e) {}
   }
