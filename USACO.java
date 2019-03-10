@@ -103,7 +103,8 @@ public class USACO {
     return 0;
   }
 
-  private static void silverHelper(int[][] field) {
+  private static int[][] silverHelper(int[][] field) {
+    int[][] newField = new int[field.length][field[0].length];
     for (int r = 0; r < field.length; r++) {
       for (int c = 0; c < field[0].length; c++) {
 
@@ -120,6 +121,12 @@ public class USACO {
       }
     }
     return s;
+  }
+
+  private static boolean outOfBounds(int[][] field, int r, int c) {
+    if (r < 0 || c < 0) return true;
+    if (r >= field.length || c > field[0].length) return true;
+    return false;
   }
 
   public static void main(String[] args) {
