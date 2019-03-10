@@ -149,12 +149,12 @@ public class USACO {
     return false;
   }
 
-  public static void main(String[] args) {
-    try {
-      // System.out.println(bronze("makelake.2.in"));
-      System.out.println(silver("ctravel.3.in"));
-    }
-    catch (FileNotFoundException e) {}
-  }
+  // public static void main(String[] args) {
+  //   try {
+  //     // System.out.println(bronze("makelake.2.in"));
+  //     System.out.println(silver("ctravel.3.in"));
+  //   }
+  //   catch (FileNotFoundException e) {}
+  // }
 
 }
